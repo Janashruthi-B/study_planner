@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focused Session</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    background-size: cover;
+    transition: 1s opacity;
+    filter: blur(10px) brightness(0.7); /* Apply some effects to the video */
+  }
+
+  .container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  .timer {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .reward {
+    font-size: 24px;
+    color: #008000;
+    margin-top: 20px;
+  }
+
+  .seed-img {
+    width: 100px;
+    height: auto;
+    margin-top: 20px;
+    display: none;
+    transition: transform 2s ease; /* Adding animation */
+  }
+
+  .seed-img.show {
+    display: block;
+    transform: scale(1.2); /* Scale the image for animation effect */
+  }
+</style>
+</head>
+<body>
+  <video autoplay loop muted>
+    <source src="ocean.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+<div class="container">
+  <h1>Focused Session</h1>
+  <div class="timer" id="timer">00:00</div>
+  <button id="startBtn">Start Session</button>
+  <button id="stopBtn" style="display: none;">Stop Session</button>
+  <div class="reward" id="reward"></div>
+  <img src="seed.jpg" alt="Seed" class="seed-img" id="seedImg">
+  <button id="plantBtn" style="display: none;">Plant Seeds</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const timerDisplay = document.getElementById('timer');
+    const startButton = document.getElementById('startBtn');
+    const stopButton = document.getElementById('stopBtn');
+    const rewardDisplay = document.getElementById('reward');
+    const plantButton = document.getElementById('plantBtn');
+    const seedImage = document.getElementById('seedImg');
+    let timerInterval;
+    let totalSeconds = 0;
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      totalSeconds = 0;
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        totalSeconds++;
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      startButton.disabled = false; // Enable start button
+      stopButton.style.display = 'none'; // Hide stop button
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+      const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+      timerDisplay.textContent = `${minutes}:${seconds}`;
+    }
+
+    function completeSession() {
+      clearInterval(timerInterval);
+      rewardDisplay.textContent = 'Congratulations! You completed the focused session. Click the button below to plant seeds as a reward.';
+      plantButton.style.display = 'block'; // Show "Plant Seeds" button
+      seedImage.classList.remove('show'); // Ensure seed image is hidden until the button is clicked
+    }
+
+    function plantSeeds() {
+      rewardDisplay.textContent = 'Seeds planted! Watch them grow into beautiful plants.';
+      seedImage.classList.add('show'); // Show seed image with growing animation
+      plantButton.disabled = true; // Disable button once seeds are planted
+    }
+
+    startButton.addEventListener('click', function() {
+      startTimer();
+      startButton.disabled = true; // Disable start button once the session starts
+      stopButton.style.display = 'inline-block'; // Show stop button
+    });
+
+    stopButton.addEventListener('click', function() {
+      stopTimer();
+    });
+
+    plantButton.addEventListener('click', function() {
+      plantSeeds();
+    });
+
+    // Example: Automatically completing the session after 25 minutes (1500 seconds)
+    setTimeout(completeSession, 1500000); // 25 minutes in milliseconds
+  });
+</script>
+
+</body>
+</html>

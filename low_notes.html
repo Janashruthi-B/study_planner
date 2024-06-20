@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #f8f4e3, #e6d7b9);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px;
+}
+
+#left-container,
+#right-container {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#left-container {
+    max-width: 300px;
+}
+
+#right-container {
+    max-width: 400px;
+}
+
+.add-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+#right-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+#right-container li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+#mid-container {
+    flex: 2;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+.text-area {
+    width: calc(100% - 22px); /* Subtract padding and border width */
+    height: 200px;
+    resize: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+#addTextAreaBtn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#addTextAreaBtn:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+    <div id="left-container">
+        <p id="pa">Enter new topic:</p><br>
+        <input type="text" id="newTopicInput" placeholder="Title..."><br><br><br>
+        <button onclick="addNewTopic()" class="add-btn">Add</button>
+    </div>
+    <div id="right-container">
+        <ul id="topicList"></ul>
+    </div>
+    <div id="mid-container">
+        <ul id="textAreaList"></ul>
+        <button id="addTextAreaBtn">Add Text Area</button>
+    </div>
+</body>
+<script>
+    // Function to add a new topic
+    function addNewTopic() {
+        var topicInput = document.getElementById("newTopicInput");
+        var topicValue = topicInput.value.trim();
+
+        if (topicValue === "") {
+            alert("Please enter a valid topic.");
+            return;
+        }
+
+        var topicList = document.getElementById("topicList");
+        var newTopicItem = document.createElement("li");
+        newTopicItem.textContent = topicValue;
+
+        // Add close button to remove topic
+        var closeButton = document.createElement("span");
+        closeButton.classList.add("close");
+        closeButton.textContent = "\u00D7"; // Unicode for 'times' symbol
+        closeButton.onclick = function() {
+            this.parentElement.style.display = "none";
+            // Remove corresponding text area container
+            var textAreaContainer = document.getElementById(topicValue);
+            if (textAreaContainer) {
+                textAreaContainer.remove();
+            }
+        };
+        newTopicItem.appendChild(closeButton);
+
+        topicList.appendChild(newTopicItem);
+        topicInput.value = ""; // Clear input field
+    }
+
+    // Function to add a new text area
+    function addNewTextArea() {
+        var textAreaList = document.getElementById("textAreaList");
+        var newTextAreaContainer = document.createElement("li");
+        newTextAreaContainer.classList.add("text-area-container");
+        var newTextArea = document.createElement("textarea");
+        newTextArea.classList.add("text-area");
+        newTextArea.placeholder = "Write your text here...";
+        newTextAreaContainer.appendChild(newTextArea);
+        textAreaList.appendChild(newTextAreaContainer);
+    }
+
+    // Add event listener to add text area button
+    var addTextAreaBtn = document.getElementById("addTextAreaBtn");
+    addTextAreaBtn.addEventListener("click", addNewTextArea);
+</script>
+</html>

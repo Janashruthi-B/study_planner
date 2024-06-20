@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-image: url("ocean.png"); /* Replace with your image path */
+  background-size: cover; /* Adjust background size as needed */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-position: center; /* Center the image horizontally and vertically */
+  height: 100vh; /* Set container height to 100% viewport height */
+  width: 100vw; /* Set container width to 100% viewport width */
+  padding: 80px;
+  text-align: center;
+  background: #012120;
+  color:#ffffff;
+}
+
+
+
+/* Increase the font size of the h1 element */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #7b9598;
+  justify-content: center; /* Center elements horizontally */
+  align-items: center; 
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color:#371f04;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #3c586d;
+  color: rgb(255, 255, 255);
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color:#e9f7f9;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #a3e4eb;
+  width: 100%;
+  padding: 20px;
+}
+.fakeimg1{
+  background-color: #a3e4eb;
+  width: auto;
+}
+.fakeimg2{
+  background-color: #a3e4eb;
+  width: auto;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width:100%;
+  }
+}
+#h2{
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  
+  
+}
+footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center; /* Center content horizontally */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Distribute links horizontally */
+  align-items: center; /* Align links and copyright text vertically */
+  width: 80%; /* Adjust width as needed */
+  margin: 0 auto; /* Center container horizontally */
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links li {
+  display: inline-block; /* Display links horizontally */
+  margin: 0 10px; /* Add spacing between links */
+}
+
+.social-links li a img {
+  width: 30px; /* Adjust image width as needed */
+  height: 30px; /* Adjust image height as needed */
+}
+.a1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="header">
+  <img src="ocean.png" width="100%" style="background-size: cover;background-repeat: no-repeat;background-position: center; ">
+  <h1 class="a1">Atlanta</h1>
+  <p>Just Do It!</p>
+</div>
+
+<div class="navbar">
+  <a href="index.html">Calendar</a>
+  <a href="to do.html">TO-DO list</a>
+  <a href="notes_final.html">Notes</a>
+  <a href="timer.html">Focus Session</a>
+  <a href="#" class="right">Link</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2 id="h">Launch Pad</h2>
+    <h3>Vision:</h3>
+    <div>
+    <img src="vb.webp" width="75%" style="background-size: 25% ;background-repeat: no-repeat;background-position: center; ">
+  </div>
+    <h3>Dark academia</h3>
+
+  </div>
+  <div class="main">
+    <h2>Journal</h2>
+    <h3>First day of college.</h3>
+    <div class="fakeimg" style="height:200px;">
+      <h2>
+        Highlights of the day:
+      </h2>
+    <p>
+      <li>Worked on a cool website design.</li><br>
+      <li>Had my fav pani puri.</li><br>
+      <li>Got full marks in fog test</li><br>
+    </p></div>
+    <p>Practising journalling daily!!!</p>
+    <br>
+    </div>
+</div>
+<div>
+<footer>
+  <div class="footer-container">
+    <ul class="social-links">
+      <li>
+        <a href="#">
+          <img src="fb.jpeg" alt="Facebook Icon">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="tw.png" alt="Twitter Icon">
+        </a>
+      </li>
+      </ul>
+    <p>&copy; 2024 Atlanta</p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
